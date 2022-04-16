@@ -49,9 +49,9 @@ def yt_link(request):
 			webbrowser.open(link)
 			busy=True
 			checker.change_busy()
-			return HttpResponse('<h1>Thank You!</h1>')
+			return render(request, 'response.html', {'response':'<h1>Thank You!</h1>'})
 		except:
-			return HttpResponse('<h1>Bad URL!</h1><p>Provide a proper YouTube link</p>')
+			return render(request, 'response.html', {'response':'<h1>Bad URL!</h1><p>Provide a proper YouTube link</p>'})
 	else:
-		return HttpResponse('<h3>The player is busy. Please try again later!</h3>')
+		return render(request, 'response.html', {'response':'<h2>The player is busy. Please try again later!</h2>'})
 	#return render(request, 'video.html', {'link': inp})

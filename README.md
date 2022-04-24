@@ -69,7 +69,7 @@ Now to access the homepage of the server from another device, you just have to t
 
 On submitting another song before the current song is finished, the server will display this page:
 
-<img src="https://user-images.githubusercontent.com/65415209/164992195-dfbc8846-8a8f-46f1-96eb-c47da18b6920.jpg" width="30%"></img>
+<img src="https://user-images.githubusercontent.com/65415209/164992195-dfbc8846-8a8f-46f1-96eb-c47da18b6920.jpg" width="20%"></img>
 
 If luckily no ads are played at the beginning of the song, then the server will nicely accept new requests only after the song ends. That's why a premium YouTube account is preferred.
 

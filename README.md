@@ -22,17 +22,21 @@ Install Pydroid3 from the Play Store in your mobile phone with Android of at lea
 Open the side navigation on the left side in Pydroid3 and click on "Terminal".
 
 Now execute the following command and wait for Django to install:
+
     pip install django
 
 To check whether it has been installed or not, type the following command:
+
     django-admin
 
 Download the repository on your mobile by turning on the desktop mode and clicking the green *Code* button and *Download ZIP*. Extract the ZIP file anywhere in your mobile. You should have "Bluetooth-YT-Music-On-Demand-master" folder, inside which you'll have a folder again with the same name.
 
 Open Pydroid3 and go to the terminal again and navigate into this folder by executing the following command if you have extracted it into your Download/ folder:
+
     cd Download/Bluetooth-YT-Music-On-Demand-master/Bluetooth-YT-Music-On-Demand-master/
 
 Then execute the following command to start hosting the server:
+
     python manage.py runserver 0.0.0.0:8000
 
 Voila! Now the server is up and running. You can test it by visiting 127.0.0.1:8000 in your browser. This is the Homepage of the server. However, the setup hasn't finished yet. So let's close the terminal for now.

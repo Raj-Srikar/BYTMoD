@@ -17,6 +17,7 @@ The Django server needs to be hosted in your mobile with the Hotspot & Bluetooth
 - Mozilla Firefox Nightly App
 - Bluetooth Speaker (only for streaming music. Also works without this)
 ### Setup
+#### Setting up Python:
 Install [Pydroid3](https://play.google.com/store/apps/details?id=ru.iiec.pydroid3) from the Play Store in your mobile phone with Android of at least 7.0 version.
 
 Open the side navigation on the left side in Pydroid3 and click on "Terminal".
@@ -53,7 +54,10 @@ After navigating to the relevant folder, execute the following command to start 
     python manage.py runserver 0.0.0.0:8000
 Voila! Now the server is up and running. You can test it by visiting [127.0.0.1:8000](http://127.0.0.1:8000) in your browser. This is the Homepage of the server. However, the setup hasn't finished yet. So let's close the terminal for now.
 
-Now install [Firefox Nightly Browser](https://play.google.com/store/apps/details?id=org.mozilla.fenix) on your mobile from the Play Store. We are using this browser because autoplay on every other mobile browsers has been disabled ever since. So either no other mobile browser will allow a video to be played immediately when a website is visited, or they'll play it only on mute. Even YouTube does the same thing. Only this mobile browser has the option to enable it. Do it by navigating to the browser `Settings`, then `Site Permissions` and enable `Autoplay` by clicking the first option and selecting the `Allow audio and video` option inside.
+#### Configuring Firefox Nightly:
+*(If you have a YouTube Premium account, you can skip to the "[For YouTube Premium Users](#for-youtube-premium-users)" section. You don't need to install Firefox and set the defaults. The goal here is to avoid ads at all costs.)*
+
+Install [Firefox Nightly Browser](https://play.google.com/store/apps/details?id=org.mozilla.fenix) on your mobile from the Play Store. We are using this browser because autoplay on every other mobile browsers has been disabled ever since. So either no other mobile browser will allow a video to be played immediately when a website is visited, or they'll play it only on mute. Even YouTube does the same thing. Only this mobile browser has the option to enable it. Do it by navigating to the browser `Settings`, then `Site Permissions` and enable `Autoplay` by clicking the first option and selecting the `Allow audio and video` option inside.
 
 <img src="https://user-images.githubusercontent.com/65415209/165261330-849892ac-3787-4d4e-8ddc-3fa0c4aed6fe.gif" width="25%"></img>
 
@@ -61,8 +65,7 @@ Now the videos will be autoplayed, but only on mute. On using desktop mode, the 
 
 <img src="https://user-images.githubusercontent.com/65415209/165261841-cacf969f-a902-417e-ab13-7aebd98280f6.png" width="25%"></img>
 
-Also it's highly recommended to sign in with a YouTube Premium account in the browser to prevent the annoying YouTube ads. Because they mess with the working of this tool as the server sets a timer according to the video length as to when it has to start accepting a new song reuqest. The playing of ads will eat up some time and make the server to accept requests before the song even finishes and as a result, the song will be overridden by the newly requested song.
-
+#### Setting Defaults:
 Now lastly, we have to make the Firefox as the default browser and stop YouTube from opening the YouTube links in the YouTube App. To do that go to `Default Apps` in your mobile settings and make the Firefox Nightly as the Default Browser App.
 
 <img src="https://user-images.githubusercontent.com/65415209/165272834-8fc96abc-723e-40a0-9cfd-dccbeb59886e.png" width="25%"></img>
@@ -74,7 +77,10 @@ In `Opening Links` section find YouTube and select `Don't allow app to open link
 <img src="https://user-images.githubusercontent.com/65415209/165274044-1565d085-b821-45c9-9dc8-8fcc5fcdfef4.png" width="25%"></img>
 <img src="https://user-images.githubusercontent.com/65415209/165274442-f3f44108-976e-400b-8daa-8494bf64b30c.png" width="25%"></img>
 
-Finally, we're now done with the Setup.
+#### For YouTube Premium Users:
+If you have YouTube Premium, skip the above two steps. You only have to set the `YT_PREMIUM` variable to `True` in the [views.py file on the line-12](https://github.com/Raj-Srikar/Bluetooth-YT-Music-On-Demand/blob/master/todo/views.py#L12). You should be signed in, in your YouTube app with your Premium account. The server will then use the YouTube app to play the songs.
+
+***Finally, we're now done with the Setup.***
 ### Working
 Now that everything has been setup, it's time to put this tool at work! So firstly we should connect our mobile to the Bluetooth speaker and turn on the mobile internet and hotspot. Know the IP Address of your mobile by navigating to the `About Phone` in mobile settings and clicking on the `IMEI & IP` option. Under the IP address section you can find your IP address. Better note it down somewhere because you have to share it with your friends so that they can access the homepage of the server using this IP.
 
@@ -92,15 +98,21 @@ You can now paste the YouTube song link in the text field and click on submit.
 
 <img src="https://user-images.githubusercontent.com/65415209/165276765-c206415a-9437-4118-ab2b-6dadca9cfc76.jpg" width="20%"></img>
 
-The YouTube link will be opened on **your** mobile in the Firefox browser on the other half of the split screen and the video will start playing automatically. The audio will be streamed to a Bluetooth speaker, if connected.
+The YouTube video will be opened on **your** mobile in the Firefox browser on the other half of the split screen and it will start playing automatically. The audio will be streamed to a Bluetooth speaker, if connected.
 
-<img src="https://user-images.githubusercontent.com/65415209/165277068-1ce6a8a0-746c-4063-a801-370f040a1d91.png" width="25%"></img>
+<img src="https://user-images.githubusercontent.com/65415209/165984492-62fa06c0-28fe-46df-9f17-e806deaddd8f.png" width="25%"></img>
+
+Or if you have YT Premium and have skipped the Firefox setup, the YouTube app will be opened on the other half of the split screen and the video will start playing in the application.
+
+<img src="https://user-images.githubusercontent.com/65415209/165984106-f4bb870e-bfe1-427c-b3a6-d6fdb2eeac02.png" width="25%"></img>
 
 On submitting another song before the current song is finished, the server will display this page on the other devices:
 
 <img src="https://user-images.githubusercontent.com/65415209/164992195-dfbc8846-8a8f-46f1-96eb-c47da18b6920.jpg" width="20%"></img>
 
-If luckily no ads are played at the beginning of the song, then the server will nicely accept new requests only after the song ends. That's why a premium YouTube account is preferred.
-
 ## Note from the Developer
+It's highly recommended to have a proper internet connection. Because the buffering will mess with the working of this tool as the server sets a timer according to the video length as to when it has to start accepting a new song reuqest. As the buffering will eat up some time and make the server to accept new requests before the song even finishes, the currently playing song will be overridden by the newly requested song.
+
+If luckily there was no buffering, then the server will nicely accept new requests only after the song ends.
+
 This tool was developed while having almost no knowledge about Django. Hopefully, I'll clean the code after I learn it ;)

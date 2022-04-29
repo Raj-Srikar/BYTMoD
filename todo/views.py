@@ -9,6 +9,8 @@ import pafy
 from random import randint
 
 
+YT_PREMIUM = False
+
 busy = False
 dur=None
 embedded = ''
@@ -50,8 +52,11 @@ def yt_link(request):
 		try:
 			vid = pafy.new(link)
 			dur = vid.length
-			rcode = ''.join([chr(randint(65,91))+chr(randint(97,123))+chr(randint(48,58)) for x in range(3)])
-			webbrowser.open('http://127.0.0.1:8000/video?v='+link+'&r='+rcode)
+			if YT_PREMIUM:
+				webbrowser.open(link)
+			else:
+				rcode = ''.join([chr(randint(65,91))+chr(randint(97,123))+chr(randint(48,58)) for x in range(3)])
+				webbrowser.open('http://127.0.0.1:8000/video?v='+link+'&r='+rcode)
 			checker.change_busy()
 			return render(request, 'response.html', {'response':'<h1>Thank You!</h1>'})
 		except:

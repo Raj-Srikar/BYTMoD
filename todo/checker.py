@@ -1,16 +1,24 @@
 from . import views
+from . import models
 from apscheduler.schedulers.background import BackgroundScheduler as bs
+import time
 
 sch = bs()
 invl=None
 
 def job():
-	global invl
+	global invl, on
 	views.busy=False
-	invl.remove()
+	models.set_val()
+	on = 0
+	try:
+		invl.remove()
+	except:
+		pass
 
-def change_busy():
+def change_busy(dur):
 	global invl
+	print(dur)
 	sch = bs()
-	invl = sch.add_job(job, 'interval', seconds=views.dur+5, id='my_delay')
+	invl = sch.add_job(job, 'interval', seconds=dur+5, id='my_delay')
 	sch.start()

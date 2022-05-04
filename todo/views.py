@@ -3,7 +3,9 @@ from django.http import HttpResponse
 
 from .forms import NameForm
 from . import checker
+from . import models
 
+import time
 import webbrowser
 import pafy
 from random import randint
@@ -12,22 +14,24 @@ from random import randint
 YT_PREMIUM = False
 
 busy = False
-dur=None
+dur = 0
+start = 0
 embedded = ''
 
 # Create your views here.
 def index(request):
 	return render(request, 'todo/index.html')
 
-		
+
 def get_link(request):
     busy=False
+    models.set_val()
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
         form = NameForm(request.POST)
         # check whether it's valid:
-        
+
         if form.is_valid():
             # process the data in form.cleaned_data as required
             # ...
@@ -38,17 +42,16 @@ def get_link(request):
     # if a GET (or any other method) we'll create a blank form
     else:
         form = NameForm()
-    
+
     return render(request, 'input.html', {'form': form})
 
-    
+
 def yt_link(request):
-	global busy
-	global dur
+	global busy, dur, start
 	if not busy:
 		r=request.POST
 		link = dict(r)['yt_link'][0]
-		busy=True
+		busy=True;models.set_val()
 		try:
 			vid = pafy.new(link)
 			dur = vid.length
@@ -57,14 +60,15 @@ def yt_link(request):
 			else:
 				rcode = ''.join([chr(randint(65,91))+chr(randint(97,123))+chr(randint(48,58)) for x in range(3)])
 				webbrowser.open('http://127.0.0.1:8000/video?v='+link+'&r='+rcode)
-			checker.change_busy()
+			checker.change_busy(dur)
+			start = time.time()
 			return render(request, 'response.html', {'response':'<h1>Thank You!</h1>'})
-		except:
-			busy=False
+		except ValueError:
+			busy=False;models.set_val()
 			return render(request, 'response.html', {'response':'<h1>Bad URL!</h1><p>Provide a proper YouTube link</p>'})
 	else:
 		return render(request, 'response.html', {'response':'<h2>The player is busy. Please try again later!</h2>'})
-		
+
 
 def video(request):
 	r = request.GET

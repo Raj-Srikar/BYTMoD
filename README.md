@@ -131,11 +131,11 @@ Log in to the Django server Admin panel by going to `/admin` (add this at the en
 
 <img src="https://user-images.githubusercontent.com/65415209/166682662-4da99daf-305e-4dfe-9509-e0c8e57a42ca.jpg" width="20%"></img>&ensp;<img src="https://user-images.githubusercontent.com/65415209/166682791-d302452a-3ea9-4da5-b3c6-6fb8c2e8f121.jpg" width="20%"></img>
 
-Now click `+ Add` button near the `Users` and fill in your new credentials in this page and click save when you're done.
+Now click <code><img src="https://user-images.githubusercontent.com/93818916/166888195-64d359cd-67cc-4bd9-8694-ddcc8c5019c4.svg"></img> Add</code> button near the `Users` and fill in your new credentials in this page and click save when you're done.
 
 <img src="https://user-images.githubusercontent.com/65415209/166685826-65bbe29d-d22e-44c3-91ca-61fe0e1f4b31.jpg" width="20%"></img>&ensp;<img src="https://user-images.githubusercontent.com/65415209/166683433-a8fbbaa6-6fb8-4d3c-9325-8242960f4a3c.jpg" width="16%"></img>
 
-In the next page scroll down to `Permissions` sections and enable the `Staff status` & `Superuser status` options and scroll all the way to the bottom of the page and click the save button:
+In the next page, scroll down to `Permissions` sections and enable the `Staff status` & `Superuser status` options and scroll all the way to the bottom of the page and click the save button:
 
 <img src="https://user-images.githubusercontent.com/65415209/166686510-b49ee9ff-655b-4a5d-9407-13f0b12d031b.jpg" width="20%"></img>&ensp;<img src="https://user-images.githubusercontent.com/65415209/166687024-381660b2-fbd2-48c2-aef3-e3d0c21b5e22.jpg" width="20%"></img>
 
@@ -151,7 +151,7 @@ Now log out and log in with your new credentials and delete the default `user` a
 
 This helps you make the server available to accept new song requests and override the currently playing song from any device, if wanted.
 
-To do that, log in to the Django Administration with your newly created account, and select `Controls`. In the next page, the status of the server is shown under the `IS OPENED` section. "![icon-yes](https://user-images.githubusercontent.com/65415209/166694309-032b9d82-a2dd-40f2-a797-1aed08db5cac.svg)" indicates that the server is **Available** and "![icon-no](https://user-images.githubusercontent.com/65415209/166694486-d9ff8032-2065-4710-91fa-cb82ddd403c1.svg)" indicates that the server is **Unavailable**.
+To do that, log in to the Django Administration with your newly created account, and select `Controls`. In the next page, the status of your server is shown under the `IS OPENED` section. "![icon-yes](https://user-images.githubusercontent.com/65415209/166694309-032b9d82-a2dd-40f2-a797-1aed08db5cac.svg)" indicates that the server is **Available** and "![icon-no](https://user-images.githubusercontent.com/65415209/166694486-d9ff8032-2065-4710-91fa-cb82ddd403c1.svg)" indicates that the server is **Unavailable**.
 
 <img src="https://user-images.githubusercontent.com/65415209/166696473-c2f56872-85ec-47ea-a8ab-aa595e4c63cb.jpg" width="20%"></img>&ensp;<img src="https://user-images.githubusercontent.com/65415209/166697429-6a6a204c-f59e-4df0-815c-5c0dd90830c2.jpg" width="20%"></img>
    
@@ -159,7 +159,7 @@ Then click on the `Open for New Song Requests` option and check the CheckBox to 
 
 <img src="https://user-images.githubusercontent.com/65415209/166698203-1ca3d4fb-3e8d-4d76-8252-a3d4e94932c8.jpg" width="20%"></img>&ensp;<img src="https://user-images.githubusercontent.com/65415209/166698584-0becfc9e-2d12-4631-9d4b-cad604c90b76.jpg" width="20%"></img>&ensp;<img src="https://user-images.githubusercontent.com/65415209/166698817-23953cba-c106-437c-bfaf-5c2078d0e09e.jpg" width="20%"></img>&ensp;<img src="https://user-images.githubusercontent.com/65415209/166698933-d7503af9-0d30-4384-8148-e3339879ffaf.jpg" width="20%"></img>
 
-While a song is being played and the server is made unavailable after making it available, the timer will be continued if the song is being played uninterruptedly, so that the player can be automatically made available when the song ends.
+While a song is being played and the server is made unavailable after making it available, the timer will be continued so that the player can be automatically made available when the song ends, if it was played uninterruptedly.
 </li>
 </ol>
 </details>
